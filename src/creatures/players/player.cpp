@@ -282,6 +282,33 @@ WeaponType_t Player::getWeaponType() const
 	return item->getWeaponType();
 }
 
+uint32_t getAttackSpeed() const
+ {
+	uint32_t base_attackspeed = vocation->getAttackSpeed();
+	uint32_t weapon_attackspeed = 0;
+	uint32_t speed_modifier = 0;
+	this:getStorageValue(8500, weapon_attackspeed);
+	this:getStorageValue(8501, speed_modifier);
+
+	if (weapon_attackspeed == 0)
+	{
+		if (speed_modifier > 0)
+			return base_attackspeed ;
+		else {
+			return <uint32_t>(base_attackspeed * (1 + (speed_modifier / 100)));
+		}
+	}
+	else
+	{
+		if (speed_modifier > 0)
+			return base_attackspeed ;
+		else {
+			return <uint32_t>(weapon_attackspeed * (1 + (speed_modifier / 100)));
+		}
+	}
+}
+
+
 int32_t Player::getWeaponSkill(const Item* item) const
 {
 	if (!item) {
