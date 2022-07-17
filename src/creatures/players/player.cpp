@@ -285,27 +285,19 @@ WeaponType_t Player::getWeaponType() const
 uint32_t Player::getAttackSpeed() const
  {
 	int32_t base_attackspeed = vocation->getAttackSpeed();
-	int32_t weapon_attackspeed = 0;
-	int32_t speed_modifier = 0;
-	getStorageValue(8500, weapon_attackspeed);
-	getStorageValue(8501, speed_modifier);
+	int32_t attackspeed_mod = 0;
+	getStorageValue(8500, attackspeed_mod);
 
-	if (weapon_attackspeed == 0)
+
+	if (attackspeed_mod == -1)
 	{
-		if (speed_modifier > 0)
-			return (uint32_t)base_attackspeed ;
-		else {
-			return (uint32_t)(base_attackspeed * (1 + (speed_modifier / 100)));
-		}
+		return base_attackspeed;
 	}
 	else
 	{
-		if (speed_modifier > 0)
-			return (uint32_t)base_attackspeed ;
-		else {
-			return (uint32_t)(weapon_attackspeed * (1 + (speed_modifier / 100)));
-		}
+		return 	attackspeed_mod;
 	}
+
 }
 
 
