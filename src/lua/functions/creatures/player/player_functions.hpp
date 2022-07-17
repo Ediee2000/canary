@@ -268,6 +268,7 @@ class PlayerFunctions final : LuaScriptInterface {
 			registerMethod(L, "Player", "setStaminaXpBoost", PlayerFunctions::luaPlayerSetStaminaXpBoost);
 			registerMethod(L, "Player", "getExpBoostStamina", PlayerFunctions::luaPlayerGetExpBoostStamina);
 			registerMethod(L, "Player", "setExpBoostStamina", PlayerFunctions::luaPlayerSetExpBoostStamina);
+			registerMethod(L, "Player", "getAttackSpeed", PlayerFunctions::luaPlayerSetExpBoostStamina);
 
 			registerMethod(L, "Player", "getIdleTime", PlayerFunctions::luaPlayerGetIdleTime);
 			registerMethod(L, "Player", "getFreeBackpackSlots", PlayerFunctions::luaPlayerGetFreeBackpackSlots);
@@ -302,6 +303,7 @@ class PlayerFunctions final : LuaScriptInterface {
 		static int luaPlayeraddBestiaryKill(lua_State* L);
 		static int luaPlayercharmExpansion(lua_State* L);
 		static int luaPlayergetCharmMonsterType(lua_State* L);
+		static int luaPlayerGetAttackSpeed(lua_State* L);
 
 		static int luaPlayerGetPreyCards(lua_State* L);
 		static int luaPlayerGetPreyLootPercentage(lua_State* L);

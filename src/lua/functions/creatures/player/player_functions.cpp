@@ -816,6 +816,18 @@ int PlayerFunctions::luaPlayerGetMagicLevel(lua_State* L) {
 	return 1;
 }
 
+int PlayerFunctions::luaPlayerGetAttackSpeed(lua_State* L) {
+	// player:getAttackSpeed()
+	Player* player = getUserdata<Player>(L, 1);
+	if (player) {
+		lua_pushnumber(L, player->getAttackSpeed());
+	}
+	else {
+		lua_pushnil(L);
+	}
+	return 1;
+}
+
 int PlayerFunctions::luaPlayerGetBaseMagicLevel(lua_State* L) {
 	// player:getBaseMagicLevel()
 	Player* player = getUserdata<Player>(L, 1);
@@ -1228,6 +1240,7 @@ int PlayerFunctions::luaPlayerGetVocation(lua_State* L) {
 	}
 	return 1;
 }
+
 
 int PlayerFunctions::luaPlayerSetVocation(lua_State* L) {
 	// player:setVocation(id or name or userdata)
