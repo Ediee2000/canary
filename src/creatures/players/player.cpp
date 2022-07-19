@@ -94,10 +94,10 @@ Player::~Player()
 }
 
 
-bool Player::updateModifiers()
+void Player::updateModifiers() const
 {
 	// Life Modifier
-	uint16_t lifeadd = getStorage(8505);
+	uint16_t lifeadd = getStorageValue(8505);
 	if (lifeadd > 0) {
 		maxHealth = vocation->getHPGain() * (level - 1) + 100 + lifeadd;
 	}

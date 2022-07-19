@@ -473,7 +473,7 @@ class Player final : public Creature, public Cylinder
 
 		uint16_t getHelpers() const;
 
-		bool updateModifiers() const;
+		void updateModifiers();
 
 		bool setVocation(uint16_t vocId);
 		uint16_t getVocationId() const {

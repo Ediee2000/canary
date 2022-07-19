@@ -405,6 +405,7 @@ class PlayerFunctions final : LuaScriptInterface {
 		static int luaPlayerGetGroup(lua_State* L);
 		static int luaPlayerSetGroup(lua_State* L);
 
+
 		static int luaPlayerIsSupplyStashAvailable(lua_State* L);
 		static int luaPlayerGetStashCounter(lua_State* L);
 		static int luaPlayerOpenStash(lua_State* L);
@@ -518,7 +519,8 @@ class PlayerFunctions final : LuaScriptInterface {
 		static int luaPlayerGetFightMode(lua_State* L);
 
 		static int luaPlayerGetBaseXpGain(lua_State *L);
-		static int luaPlayerSetBaseXpGain(lua_State *L);
+		static int luaPlayerSetBaseXpGain(lua_State* L);
+		static int luaPlayerUpdateModifier(lua_State *L);
 		static int luaPlayerGetVoucherXpBoost(lua_State *L);
 		static int luaPlayerSetVoucherXpBoost(lua_State *L);
 		static int luaPlayerGetGrindingXpBoost(lua_State *L);
