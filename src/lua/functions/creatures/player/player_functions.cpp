@@ -1985,6 +1985,7 @@ int PlayerFunctions::luaPlayerOpenChannel(lua_State* L) {
 int PlayerFunctions::luaPlayerGetSlotItem(lua_State* L) {
 	// player:getSlotItem(slot)
 	const Player* player = getUserdata<const Player>(L, 1);
+
 	if (!player) {
 		lua_pushnil(L);
 		return 1;
@@ -2823,6 +2824,22 @@ int PlayerFunctions::luaPlayerGetBaseXpGain(lua_State *L) {
 	if (player) {
 		lua_pushnumber(L, player->getBaseXpGain());
 	} else {
+		lua_pushnil(L);
+	}
+	return 1;
+}
+
+int PlayerFunctions::luaPlayerUpdateModifier(lua_State* L) {
+	// player:updateModifier()
+	Player* player = getUserdata<Player>(L, 1);
+	if (player) {
+		// Life Add ( LIFE ADD and MOD)
+		uint16_t lifeadd = getStorage(8505)
+		player.maxHealth += lifeadd
+		player->sendStats();
+		pushBoolean(L, true);
+	}
+	else {
 		lua_pushnil(L);
 	}
 	return 1;
