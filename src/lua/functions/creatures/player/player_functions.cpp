@@ -2833,9 +2833,7 @@ int PlayerFunctions::luaPlayerUpdateModifier(lua_State* L) {
 	// player:updateModifier()
 	Player* player = getUserdata<Player>(L, 1);
 	if (player) {
-		// Life Add ( LIFE ADD and MOD)
-		uint16_t lifeadd = getStorage(8505)
-		player.maxHealth += lifeadd
+		player->updateModifiers();
 		player->sendStats();
 		pushBoolean(L, true);
 	}

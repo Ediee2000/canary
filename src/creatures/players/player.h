@@ -473,6 +473,8 @@ class Player final : public Creature, public Cylinder
 
 		uint16_t getHelpers() const;
 
+		bool updateModifiers() const;
+
 		bool setVocation(uint16_t vocId);
 		uint16_t getVocationId() const {
 			return vocation->getId();

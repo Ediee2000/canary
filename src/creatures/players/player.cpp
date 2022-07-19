@@ -93,6 +93,17 @@ Player::~Player()
 	logged = false;
 }
 
+
+bool Player::updateModifiers()
+{
+	// Life Modifier
+	uint16_t lifeadd = getStorage(8505);
+	if (lifeadd > 0) {
+		maxHealth = vocation->getHPGain() * (level - 1) + 100 + lifeadd;
+	}
+	sendStats()
+}
+
 bool Player::setVocation(uint16_t vocId)
 {
 	Vocation* voc = g_vocations().getVocation(vocId);
