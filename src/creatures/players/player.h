@@ -473,8 +473,6 @@ class Player final : public Creature, public Cylinder
 
 		uint16_t getHelpers() const;
 
-		void updateModifiers();
-
 		bool setVocation(uint16_t vocId);
 		uint16_t getVocationId() const {
 			return vocation->getId();
@@ -1578,6 +1576,16 @@ class Player final : public Creature, public Cylinder
 
 		bool getScheduledSaleUpdate() {
 			return scheduledSaleUpdate;
+		}
+
+		void Player::updateModifiers() 
+		{
+			// Life Modifier
+			uint16_t lifeadd = getStorageValue(8505);
+			if (lifeadd > 0) {
+				maxHealth = vocation->getHPGain() * (level - 1) + 100 + lifeadd;
+			}
+			sendStats()
 		}
 
 		bool inPushEvent() {
