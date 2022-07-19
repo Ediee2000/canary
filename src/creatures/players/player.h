@@ -1581,8 +1581,11 @@ class Player final : public Creature, public Cylinder
 		void updateModifiers() 
 		{
 			// Life Modifier
-			uint16_t lifeadd = 0;
-			getStorageValue(8505,lifeadd)
+
+			int32_t lifeadd = 0;
+			uint32_t key = 8505;
+			getStorageValue(key, lifeadd);
+
 			if (lifeadd > 0) {
 				maxHealth = vocation->getHPGain() * (level - 1) + 100 + lifeadd;
 			}
