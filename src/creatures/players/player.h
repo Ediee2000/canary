@@ -1578,20 +1578,6 @@ class Player final : public Creature, public Cylinder
 			return scheduledSaleUpdate;
 		}
 
-		void updateModifiers() 
-		{
-			// Life Modifier
-
-			int32_t lifeadd = 0;
-			uint32_t key = 8505;
-			getStorageValue(key, lifeadd);
-
-			if (lifeadd > 0) {
-				maxHealth = vocation->getHPGain() * (level - 1) + 100 + lifeadd;
-			}
-			sendStats();
-		}
-
 		bool inPushEvent() {
 			return inEventMovePush;
 		}
