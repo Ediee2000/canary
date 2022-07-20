@@ -588,6 +588,11 @@ class Player final : public Creature, public Cylinder
 			return std::max<int32_t>(0, manaMax + varStats[STAT_MAXMANAPOINTS]);
 		}
 
+		void setMaxMana(int32_t value) {
+			manaMax = value;
+			mana = std::min<int32_t>(mana, value);
+		}
+
 		Item* getInventoryItem(Slots_t slot) const;
 
 		bool isItemAbilityEnabled(Slots_t slot) const {
