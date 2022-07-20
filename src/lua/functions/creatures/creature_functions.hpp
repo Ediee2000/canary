@@ -70,7 +70,6 @@ class CreatureFunctions final : LuaScriptInterface {
 			registerMethod(L, "Creature", "addHealth", CreatureFunctions::luaCreatureAddHealth);
 			registerMethod(L, "Creature", "getMaxHealth", CreatureFunctions::luaCreatureGetMaxHealth);
 			registerMethod(L, "Creature", "setMaxHealth", CreatureFunctions::luaCreatureSetMaxHealth);
-			registerMethod(L, "Creature", "setMaxMana", CreatureFunctions::luaCreatureSetMaxMana);
 			registerMethod(L, "Creature", "setHiddenHealth", CreatureFunctions::luaCreatureSetHiddenHealth);
 			registerMethod(L, "Creature", "isMoveLocked", CreatureFunctions::luaCreatureIsMoveLocked);
 			registerMethod(L, "Creature", "setMoveLocked", CreatureFunctions::luaCreatureSetMoveLocked);
