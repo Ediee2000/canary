@@ -5605,10 +5605,10 @@ void Player::setGuild(Guild* newGuild)
 	}
 }
 
-int Player::getHealthTicks()
+int32_t Player::getHealthTicks()
 {
 	if (!vocation) {
-		return;
+		return 0;
 	}
 	int32_t health_mod = 0;
 	getStorageValue(8513, health_mod);
