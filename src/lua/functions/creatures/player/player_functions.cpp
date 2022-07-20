@@ -2829,6 +2829,18 @@ int PlayerFunctions::luaPlayerGetBaseXpGain(lua_State *L) {
 	return 1;
 }
 
+int PlayerFunctions::luaPlayerUpdateRegeneration(lua_State *L)
+{
+	// player:updateRegeneration()
+	Player* player = getUserdata<Player>(L, 1);
+	if (player) {
+		player->updateRegeneration();
+		lua_pushnumber(L, 1);
+	} else {
+		lua_pushnil(L);
+	}
+	return 1;
+}
 
 int PlayerFunctions::luaPlayerSetBaseXpGain(lua_State *L) {
 	// player:setBaseXpGain(value)

@@ -5611,12 +5611,42 @@ void Player::updateRegeneration()
 		return;
 	}
 
+	int32_t health_add = 0;
+	int32_t health_mod = 0;
+	int32_t mana_add = 0;
+	int32_t mana_mod = 0;
+	getStorageValue(8514, health_add);
+	getStorageValue(8513, health_mod);
+	getStorageValue(8516, mana_add);
+	getStorageValue(8515, mana_mod);
+
+	if (mana_mod < 0)
+	{
+		mana_mod = vocation->getManaGainTicks();
+	}
+	else
+	{
+		mana_mod = (uint32_t)vocation->getManaGainTicks() * (1 - (mana_mod / 100));
+	}
+	if (health_mod < 0)
+	{
+		health_mod = vocation->getHealthGainTicks();
+	}
+	else
+	{
+		health_mod = (uint32_t)vocation->getHealthGainTicks() * (1 - (health_mod / 100));
+	}
+
+	health_add = std::max<int32_t>(0,health_add);
+	mana_add = std::max<int32_t>(0,mana_add);
+
+
 	Condition* condition = getCondition(CONDITION_REGENERATION, CONDITIONID_DEFAULT);
 	if (condition) {
-		condition->setParam(CONDITION_PARAM_HEALTHGAIN, vocation->getHealthGainAmount());
-		condition->setParam(CONDITION_PARAM_HEALTHTICKS, vocation->getHealthGainTicks());
-		condition->setParam(CONDITION_PARAM_MANAGAIN, vocation->getManaGainAmount());
-		condition->setParam(CONDITION_PARAM_MANATICKS, vocation->getManaGainTicks());
+		condition->setParam(CONDITION_PARAM_HEALTHGAIN, vocation->getHealthGainAmount() + health_add);
+		condition->setParam(CONDITION_PARAM_HEALTHTICKS, health_mod);
+		condition->setParam(CONDITION_PARAM_MANAGAIN, vocation->getManaGainAmount() + mana_add);
+		condition->setParam(CONDITION_PARAM_MANATICKS, mana_mod);
 	}
 }
 
