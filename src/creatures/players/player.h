@@ -1575,6 +1575,8 @@ class Player final : public Creature, public Cylinder
 
 		void updateRegeneration();
 
+		int getHealthTicks();
+
 		void setScheduledSaleUpdate(bool scheduled) {
 			scheduledSaleUpdate = scheduled;
 		}

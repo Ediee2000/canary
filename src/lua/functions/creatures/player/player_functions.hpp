@@ -256,6 +256,8 @@ class PlayerFunctions final : LuaScriptInterface {
 			registerMethod(L, "Player", "hasSecureMode", PlayerFunctions::luaPlayerHasSecureMode);
 			registerMethod(L, "Player", "getFightMode", PlayerFunctions::luaPlayerGetFightMode);
 
+
+			registerMethod(L, "Player", "getHealthTicks", PlayerFunctions::luaPlayerGetHealthTicks);
 			registerMethod(L, "Player", "updateRegeneration", PlayerFunctions::luaPlayerUpdateRegeneration);
 			registerMethod(L, "Player", "getBaseXpGain", PlayerFunctions::luaPlayerGetBaseXpGain);
 			registerMethod(L, "Player", "setBaseXpGain", PlayerFunctions::luaPlayerSetBaseXpGain);
@@ -520,6 +522,7 @@ class PlayerFunctions final : LuaScriptInterface {
 
 		static int luaPlayerGetBaseXpGain(lua_State *L);
 		static int luaPlayerUpdateRegeneration(lua_State *L);
+		static int luaPlayerGetHealthTicks(lua_State *L);
 		static int luaPlayerSetBaseXpGain(lua_State* L);
 		static int luaPlayerUpdateModifier(lua_State *L);
 		static int luaPlayerGetVoucherXpBoost(lua_State *L);

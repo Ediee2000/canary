@@ -5605,6 +5605,27 @@ void Player::setGuild(Guild* newGuild)
 	}
 }
 
+int Player::getHealthTicks()
+{
+	if (!vocation) {
+		return;
+	}
+	int32_t health_mod = 0;
+	getStorageValue(8513, health_mod);
+
+	if (health_mod <= 0)
+	{
+		health_mod = vocation->getHealthGainTicks();
+	}
+	else
+	{
+		health_mod = (int)vocation->getHealthGainTicks() * (1 - (health_mod / 100));
+	}
+
+	return health_mod;
+}
+
+
 void Player::updateRegeneration()
 {
 	if (!vocation) {
@@ -5620,7 +5641,7 @@ void Player::updateRegeneration()
 	getStorageValue(8516, mana_add);
 	getStorageValue(8515, mana_mod);
 
-	if (mana_mod < 0)
+	if (mana_mod <= 0)
 	{
 		mana_mod = vocation->getManaGainTicks();
 	}
@@ -5628,7 +5649,7 @@ void Player::updateRegeneration()
 	{
 		mana_mod = (uint32_t)vocation->getManaGainTicks() * (1 - (mana_mod / 100));
 	}
-	if (health_mod < 0)
+	if (health_mod <= 0)
 	{
 		health_mod = vocation->getHealthGainTicks();
 	}
@@ -5639,7 +5660,6 @@ void Player::updateRegeneration()
 
 	health_add = std::max<int32_t>(0,health_add);
 	mana_add = std::max<int32_t>(0,mana_add);
-
 
 	Condition* condition = getCondition(CONDITION_REGENERATION, CONDITIONID_DEFAULT);
 	if (condition) {
