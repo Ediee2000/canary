@@ -269,7 +269,6 @@ class PlayerFunctions final : LuaScriptInterface {
 			registerMethod(L, "Player", "getExpBoostStamina", PlayerFunctions::luaPlayerGetExpBoostStamina);
 			registerMethod(L, "Player", "setExpBoostStamina", PlayerFunctions::luaPlayerSetExpBoostStamina);
 			registerMethod(L, "Player", "getAttackSpeed", PlayerFunctions::luaPlayerSetExpBoostStamina);
-			registerMethod(L, "Player", "updateModifier", PlayerFunctions::luaPlayerUpdateModifier);
 
 			registerMethod(L, "Player", "getIdleTime", PlayerFunctions::luaPlayerGetIdleTime);
 			registerMethod(L, "Player", "getFreeBackpackSlots", PlayerFunctions::luaPlayerGetFreeBackpackSlots);

@@ -542,6 +542,28 @@ int CreatureFunctions::luaCreatureSetMaxHealth(lua_State* L) {
 	return 1;
 }
 
+int CreatureFunctions::luaCreatureSetMaxMana(lua_State* L) {
+	// creature:setMaxMana(maxMana)
+	Creature* creature = getUserdata<Creature>(L, 1);
+	if (!creature) {
+		lua_pushnil(L);
+		return 1;
+	}
+
+	creature->manaMax = getNumber<uint32_t>(L, 2);
+	creature->mana = std::min<uint32_t>(creature->mana, creature->manaMax);
+	g_game().addCreatureHealth(creature);
+
+	Player* player = creature->getPlayer();
+	if (player) {
+		player->sendStats();
+	}
+	pushBoolean(L, true);
+	return 1;
+}
+
+
+
 int CreatureFunctions::luaCreatureSetHiddenHealth(lua_State* L) {
 	// creature:setHiddenHealth(hide)
 	Creature* creature = getUserdata<Creature>(L, 1);

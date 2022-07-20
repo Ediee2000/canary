@@ -2829,19 +2829,6 @@ int PlayerFunctions::luaPlayerGetBaseXpGain(lua_State *L) {
 	return 1;
 }
 
-int PlayerFunctions::luaPlayerUpdateModifier(lua_State* L) {
-	// player:updateModifier()
-	Player* player = getUserdata<Player>(L, 1);
-	if (player) {
-		player->updateModifiers();
-		player->sendStats();
-		pushBoolean(L, true);
-	}
-	else {
-		lua_pushnil(L);
-	}
-	return 1;
-}
 
 int PlayerFunctions::luaPlayerSetBaseXpGain(lua_State *L) {
 	// player:setBaseXpGain(value)
