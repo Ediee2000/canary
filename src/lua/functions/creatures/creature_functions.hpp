@@ -152,6 +152,7 @@ class CreatureFunctions final : LuaScriptInterface {
 		static int luaCreatureAddHealth(lua_State* L);
 		static int luaCreatureGetMaxHealth(lua_State* L);
 		static int luaCreatureSetMaxHealth(lua_State* L);
+		static int luaCreatureSetMaxMana(lua_State* L);
 		static int luaCreatureSetHiddenHealth(lua_State* L);
 
 		static int luaCreatureIsMoveLocked(lua_State* L);
