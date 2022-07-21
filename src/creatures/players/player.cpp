@@ -5617,10 +5617,6 @@ int32_t Player::getHealthTicks()
 	{
 		health_mod = vocation->getHealthGainTicks();
 	}
-	else
-	{
-		health_mod = static_cast<int32_t>(vocation->getHealthGainTicks() * (1 - (health_mod / 100)));
-	}
 
 	return health_mod;
 }
@@ -5645,17 +5641,9 @@ void Player::updateRegeneration()
 	{
 		mana_mod = vocation->getManaGainTicks();
 	}
-	else
-	{
-		mana_mod = static_cast<int32_t>(vocation->getManaGainTicks() * (1 - (mana_mod / 100)));
-	}
 	if (health_mod <= 0)
 	{
 		health_mod = vocation->getHealthGainTicks();
-	}
-	else
-	{
-		health_mod = static_cast<int32_t>(vocation->getHealthGainTicks() * (1 - (health_mod / 100)));
 	}
 
 	health_add = std::max<int32_t>(0,health_add);
