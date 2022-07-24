@@ -822,7 +822,8 @@ MonsterType* Monsters::loadMonster(const std::string& file, const std::string& m
 		break;
 	
 	default:
-		mType->name = attr.as_string();
+		mType->name = "[TESTE] ";
+		mType->name.append(attr.as_string());
 		break;
 	}
 
