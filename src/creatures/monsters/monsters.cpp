@@ -768,7 +768,65 @@ MonsterType* Monsters::loadMonster(const std::string& file, const std::string& m
 		mType = monsters[asLowerCaseString(monsterName)];
 	}
 
-	mType->name = attr.as_string();
+	int32_t random_tier = (int32_t)(normal_random(1,100) / 10);
+
+	switch (random_tier)
+	{
+	case 1:
+		mType->name = "[Enraged] ";
+		mType->name.append(attr.as_string());
+		break;
+	case 2:
+		mType->name = "[Savage] ";
+		mType->name.append(attr.as_string());
+		break;
+	
+	case 3:
+		mType->name = "[Timid] ";
+		mType->name.append(attr.as_string());
+		break;
+	
+	case 4:
+		mType->name = "[Scout] ";
+		mType->name.append(attr.as_string());
+		break;
+	
+	case 5:
+		mType->name = "[Bully] ";
+		mType->name.append(attr.as_string());
+		break;
+	
+	case 6:
+		mType->name = "[Envy] ";
+		mType->name.append(attr.as_string());
+		break;
+	
+	case 7:
+		mType->name = "[Mystic] ";
+		mType->name.append(attr.as_string());
+		break;
+	
+	case 8:
+		mType->name = "[Demonic] ";
+		mType->name.append(attr.as_string());
+		break;
+	
+	case 9:
+		mType->name = "[Mercyless] ";
+		mType->name.append(attr.as_string());
+		break;
+	
+	case 10:
+		mType->name = "[WarLord] ";
+		mType->name.append(attr.as_string());
+		break;
+	
+	default:
+		mType->name = attr.as_string();
+		break;
+	}
+
+	
 
 	if ((attr = monsterNode.attribute("nameDescription"))) {
 		mType->nameDescription = attr.as_string();
