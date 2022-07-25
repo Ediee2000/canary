@@ -175,6 +175,7 @@ class Monster final : public Creature
 		}
 
 		void setNormalCreatureLight() override;
+
 		bool getCombatValues(int32_t& min, int32_t& max) override;
 
 		void doAttacking(uint32_t interval) override;
@@ -191,6 +192,9 @@ class Monster final : public Creature
 		const CreatureHashSet& getFriendList() const {
 			return friendList;
 		}
+
+		void setName(std::string value) ;
+		void setNameDescription(std::string value) ;
 
 		bool isTarget(const Creature* creature) const;
 		bool isFleeing() const {
@@ -262,7 +266,6 @@ class Monster final : public Creature
 		void onCreatureFound(Creature* creature, bool pushFront = false);
 
 		void updateLookDirection();
-
 		void addFriend(Creature* creature);
 		void removeFriend(Creature* creature);
 		void addTarget(Creature* creature, bool pushFront = false);

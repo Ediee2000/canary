@@ -1977,6 +1977,16 @@ bool Monster::getCombatValues(int32_t& min, int32_t& max)
 	return true;
 }
 
+void Monster::setName(std::string value)
+{
+	name = value;
+}
+
+void Monster::setNameDescription(std::string value)
+{
+	nameDescription = value;
+}
+
 void Monster::updateLookDirection()
 {
 	Direction newDir = getDirection();
@@ -2047,6 +2057,8 @@ void Monster::setNormalCreatureLight()
 {
 	internalLight = mType->info.light;
 }
+
+
 
 void Monster::drainHealth(Creature* attacker, int32_t damage)
 {

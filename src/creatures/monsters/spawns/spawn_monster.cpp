@@ -194,8 +194,8 @@ bool SpawnMonster::spawnMonster(uint32_t spawnMonsterId, MonsterType* monsterTyp
 
 	if (random_tier < 10)
 	{
-		monster_ptr->name = "[MOD] " + monster_ptr->name;
-		monster_ptr->nameDescription = "[MOD] " + monster_ptr->nameDescription;
+		monster_ptr->setName("[MOD] " + monster_ptr->getName());
+		monster_ptr->setNameDescription("[MOD] " + monster_ptr->getNameDescription());
 		mod_monster = true;
 	}
 
