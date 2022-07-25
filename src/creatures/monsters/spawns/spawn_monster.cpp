@@ -205,6 +205,14 @@ bool SpawnMonster::spawnMonster(uint32_t spawnMonsterId, MonsterType* monsterTyp
 	monster->setMasterPos(pos);
 	monster->incrementReferenceCounter();
 
+	
+	int32_t random_tier = (int32_t)(normal_random(1,100) / 10);
+
+	if (random_tier < 20)
+	{
+		monster->name = "[MOD]" + monster->getName();
+	}
+
 	spawnedMonsterMap.insert(spawned_pair(spawnMonsterId, monster));
 	spawnMonsterMap[spawnMonsterId].lastSpawn = OTSYS_TIME();
 	g_events().eventMonsterOnSpawn(monster, pos);
@@ -301,12 +309,6 @@ bool SpawnMonster::addMonster(const std::string& name, const Position& pos, Dire
 
 	spawnBlock_t sb;
 
-	int32_t random_tier = (int32_t)(normal_random(1,100) / 10);
-
-	if (random_tier < 20)
-	{
-		monsterType->name = "[Mod] " + monsterType->name;
-	}
 	
 
 	sb.monsterType = monsterType;

@@ -37,6 +37,8 @@ class Monster final : public Creature
 		static Monster* createMonster(const std::string& name);
 		static int32_t despawnRange;
 		static int32_t despawnRadius;
+		static std::string name;
+		static std::string nameDescription;
 
 		explicit Monster(MonsterType* mType);
 		~Monster();
@@ -62,14 +64,15 @@ class Monster final : public Creature
 		void addList() override;
 
 		const std::string& getName() const override {
-			return mType->name;
+			return name;
 		}
+
 		// Real monster name, set on monster creation "createMonsterType(typeName)"
 		const std::string& getTypeName() const override {
 			return mType->typeName;
 		}
 		const std::string& getNameDescription() const override {
-			return mType->nameDescription;
+			return nameDescription;
 		}
 		std::string getDescription(int32_t) const override {
 			return strDescription + '.';
