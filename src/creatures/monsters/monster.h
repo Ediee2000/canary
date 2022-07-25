@@ -37,8 +37,6 @@ class Monster final : public Creature
 		static Monster* createMonster(const std::string& name);
 		static int32_t despawnRange;
 		static int32_t despawnRadius;
-		static std::string name;
-		static std::string nameDescription;
 
 		explicit Monster(MonsterType* mType);
 		~Monster();
@@ -229,6 +227,8 @@ class Monster final : public Creature
 		CreatureList targetList;
 
 		std::string strDescription;
+		std::string name;
+		std::string nameDescription;
 
 		MonsterType* mType;
 		SpawnMonster* spawnMonster = nullptr;

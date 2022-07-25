@@ -28,8 +28,6 @@
 
 int32_t Monster::despawnRange;
 int32_t Monster::despawnRadius;
-std::string Monster::name;
-std::string Monster::nameDescription;
 
 uint32_t Monster::monsterAutoID = 0x40000000;
 
