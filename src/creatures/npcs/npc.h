@@ -71,10 +71,7 @@ class Npc final : public Creature
 		const std::string& getName() const override {
 			return npcType->name;
 		}
-
-		const std::string& getMonsterNameType() const override {
-			return npcType->name;
-		}
+		
 		// Real npc name, set on npc creation "createNpcType(typeName)"
 		const std::string& getTypeName() const override {
 			return npcType->typeName;
@@ -84,6 +81,10 @@ class Npc final : public Creature
 		}
 		std::string getDescription(int32_t) const override {
 			return strDescription + '.';
+		}
+
+		std::string& getMonsterTypeName() const override {
+			return npcType->typeName;
 		}
 
 		void setName(std::string newName) {
