@@ -6369,7 +6369,7 @@ bool Game::combatChangeMana(Creature* attacker, Creature* target, CombatDamage& 
 
 		if (targetPlayer && attacker && attacker->getMonster()) {
 			//Charm rune (target as player)
-			MonsterType* mType = g_monsters().getMonsterType(attacker->getName());
+			MonsterType* mType = g_monsters().getMonsterType(attacker->getMonsterTypeName());
 			if (mType) {
 				charmRune_t activeCharm = g_iobestiary().getCharmFromTarget(targetPlayer, mType);
 				if (activeCharm != CHARM_NONE && activeCharm != CHARM_CLEANSE) {

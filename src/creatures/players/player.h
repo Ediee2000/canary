@@ -103,6 +103,10 @@ class Player final : public Creature, public Cylinder
 		const std::string& getTypeName() const override {
 			return name;
 		}
+
+		const std::string& getMonsterTypeName() const override {
+			return name;
+		}
 		const std::string& getNameDescription() const override {
 			return name;
 		}

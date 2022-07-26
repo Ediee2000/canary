@@ -2548,7 +2548,7 @@ void Player::death(Creature* lastHitCreature)
 		// Charm bless bestiary
 		if (lastHitCreature && lastHitCreature->getMonster()) {
 			if (charmRuneBless != 0) {
-				const MonsterType* mType = g_monsters().getMonsterType(lastHitCreature->getName());
+				const MonsterType* mType = g_monsters().getMonsterType(lastHitCreature->getMonsterTypeName());
 				if (mType && mType->info.raceid == charmRuneBless) {
 					deathLossPercent = (deathLossPercent * 90) / 100;
 				}
