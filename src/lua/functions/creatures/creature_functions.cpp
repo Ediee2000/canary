@@ -192,7 +192,7 @@ int CreatureFunctions::luaCreatureGetName(lua_State* L) {
 	// creature:getTypeName()
 	const Creature* creature = getUserdata<const Creature>(L, 1);
 	if (creature) {
-		pushString(L, creature->getName());
+		pushString(L, creature->getMonsterTypeName());
 	} else {
 		lua_pushnil(L);
 	}
