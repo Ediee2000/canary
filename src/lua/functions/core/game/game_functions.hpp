@@ -31,7 +31,7 @@ class GameFunctions final : LuaScriptInterface {
 
 				registerMethod(L, "Game", "createNpcType", GameFunctions::luaGameCreateNpcType);
 				registerMethod(L, "Game", "createMonsterType", GameFunctions::luaGameCreateMonsterType);
-				registerMethod(L, "Game", "CreateEnhancedMonster", GameFunctions::luaGameCreateEnhancedMonster);
+				registerMethod(L, "Game", "createEnhancedMonster", GameFunctions::luaGameCreateEnhancedMonster);
 
 				registerMethod(L, "Game", "getSpectators", GameFunctions::luaGameGetSpectators);
 
