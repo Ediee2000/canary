@@ -2144,3 +2144,12 @@ void Monster::getPathSearchParams(const Creature* creature, FindPathParams& fpp)
 		fpp.fullPathSearch = !canUseAttack(getPosition(), creature);
 	}
 }
+
+void Monster::enchancedMonster(int tier)
+{
+	int32_t random_tier = (int32_t)(normal_random(1,100) / 10);
+	if (tier == 1){
+		
+
+	}
+}

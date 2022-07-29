@@ -306,6 +306,7 @@ class Monster final : public Creature
 		static bool pushCreature(Creature* creature);
 		static void pushCreatures(Tile* tile);
 
+		void enchancedMonster(int tier);
 		void onThinkTarget(uint32_t interval);
 		void onThinkYell(uint32_t interval);
 		void onThinkDefense(uint32_t interval);
