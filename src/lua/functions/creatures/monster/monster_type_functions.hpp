@@ -144,14 +144,14 @@ class MonsterTypeFunctions final : LuaScriptInterface {
 
 				registerMethod(L, "MonsterType", "respawnTypePeriod", MonsterTypeFunctions::luaMonsterTypeRespawnTypePeriod);
 				registerMethod(L, "MonsterType", "respawnTypeIsUnderground", MonsterTypeFunctions::luaMonsterTypeRespawnTypeIsUnderground);
-				registerMethod(L, "EnhancedMonsters", "setAttributes", MonsterTypeFunctions::luaEnhancedMonstersSetAttributes);
+				//registerMethod(L, "EnhancedMonsters", "setAttributes", MonsterTypeFunctions::luaEnhancedMonstersSetAttributes);
 		}
 
 
 
 	private:
 
-		static int luaEnhancedMonstersSetAttributes(lua_State* L);
+		//static int luaEnhancedMonstersSetAttributes(lua_State* L);
 		static void createMonsterTypeLootLuaTable(lua_State* L, const std::vector<LootBlock>& lootList);
 
 		static int luaMonsterTypeCreate(lua_State* L);
