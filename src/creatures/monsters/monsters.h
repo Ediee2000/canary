@@ -243,6 +243,13 @@ class EnhancedMonsters
 		EnhancedMonsters(const EnhancedMonsters&) = delete;
 		EnhancedMonsters& operator=(const EnhancedMonsters&) = delete;
 
+		void setSpeed(uint32_t newSpeed);
+		void setHealth(uint32_t newHealth);
+		void setArmour(uint32_t newArmour);
+		void setDamage(uint32_t newDamage);
+		void setDefence(uint32_t newDefence);
+		void setLucky(uint32_t newLucky);
+
 		std::string name;
 
 		MonsterInfo info;

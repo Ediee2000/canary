@@ -26,6 +26,21 @@
 #include "lua/scripts/scripts.h"
 
 
+void MonsterTypeFunctions::luaEnhancedMonstersSetAttributes(lua_State* L)
+{
+	//EnhancedMonsters->setAttributes(Speed, Health, Armour, Damage, Defence, Lucky)
+	EnhancedMonsters* enhanced = getUserdata<EnhancedMonsters>(L, 1);
+
+	enhanced->setSpeed(getUserdata<uint32_t>(L, 2));
+	enhanced->setHealth(getUserdata<uint32_t>(L, 3));
+	enhanced->setArmour(getUserdata<uint32_t>(L, 4));
+	enhanced->setDamage(getUserdata<uint32_t>(L, 5));
+	enhanced->setDefence(getUserdata<uint32_t>(L, 6));
+	enhanced->setLucky(getUserdata<uint32_t>(L, 7));
+
+}
+
+
 void MonsterTypeFunctions::createMonsterTypeLootLuaTable(lua_State* L, const std::vector<LootBlock>& lootList) {
 	lua_createtable(L, lootList.size(), 0);
 
