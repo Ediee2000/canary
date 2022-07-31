@@ -1540,27 +1540,27 @@ void Monsters::addMonsterType(const std::string& name, MonsterType* mType)
 
 void EnhancedMonsters::setSpeed(uint32_t newSpeed)
 {
-	speedMod = newSpeed;
+	info.speedMod = newSpeed;
 }
 void EnhancedMonsters::setHealth(uint32_t newHealth)
 {
-	healthMod = newHealth;
+	info.healthMod = newHealth;
 }
 void EnhancedMonsters::setArmour(uint32_t newArmour)
 {
-	armourMod = newArmour;
+	info.armourMod = newArmour;
 }
 void EnhancedMonsters::setDamage(uint32_t newDamage)
 {
-	damageMod = newDamage;
+	info.damageMod = newDamage;
 }
 void EnhancedMonsters::setDefence(uint32_t newDefence)
 {
-	defenceMod = newDefence;
+	info.defenceMod = newDefence;
 }
 void EnhancedMonsters::setLucky(uint32_t newLucky)
 {
-	luckyMod = newLucky;
+	info.luckyMod = newLucky;
 }
 
 void Monsters::addEnchancedMonster(const std::string& name, EnhancedMonsters* mType)
