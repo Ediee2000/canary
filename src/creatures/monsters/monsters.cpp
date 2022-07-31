@@ -1538,27 +1538,27 @@ void Monsters::addMonsterType(const std::string& name, MonsterType* mType)
 	monsters[lowerName] = mType;
 }
 
-void EnchancedMonsters::setSpeed(uint32_t newSpeed)
+void EnhancedMonsters::setSpeed(uint32_t newSpeed)
 {
 	speedMod = newSpeed;
 }
-void EnchancedMonsters::setHealth(uint32_t newHealth)
+void EnhancedMonsters::setHealth(uint32_t newHealth)
 {
 	healthMod = newHealth;
 }
-void EnchancedMonsters::setArmour(uint32_t newArmour)
+void EnhancedMonsters::setArmour(uint32_t newArmour)
 {
 	armourMod = newArmour;
 }
-void EnchancedMonsters::setDamage(uint32_t newDamage)
+void EnhancedMonsters::setDamage(uint32_t newDamage)
 {
 	damageMod = newDamage;
 }
-void EnchancedMonsters::setDefence(uint32_t newDefence)
+void EnhancedMonsters::setDefence(uint32_t newDefence)
 {
 	defenceMod = newDefence;
 }
-void EnchancedMonsters::setLucky(uint32_t newLucky)
+void EnhancedMonsters::setLucky(uint32_t newLucky)
 {
 	luckyMod = newLucky;
 }
