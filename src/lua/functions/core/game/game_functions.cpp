@@ -53,26 +53,7 @@ int GameFunctions::luaGameCreateMonsterType(lua_State* L) {
 	return 1;
 }
 
-int GameFunctions::luaGameCreateEnhancedMonster(lua_State* L) {
-	// Game.createMonsterType(name)
-	if (isString(L, 1)) {
-		std::string name = getString(L, 1);
-		auto enhancedMonster = new EnhancedMonsters(name);
-		g_monsters().addEnchancedMonster(name, enhancedMonster);
-		if (!enhancedMonster) {
-			reportErrorFunc("EnchancedMonster is nullptr");
-			pushBoolean(L, false);
-			delete enhancedMonster;
-			return 1;
-		}
 
-		pushUserdata<EnhancedMonsters>(L, enhancedMonster);
-		setMetatable(L, -1, "EnhancedMonster");
-	} else {
-		lua_pushnil(L);
-	}
-	return 1;
-}
 
 int GameFunctions::luaGameCreateNpcType(lua_State* L) {
 	// Game.createNpcType(name)
