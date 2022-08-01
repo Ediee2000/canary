@@ -260,7 +260,6 @@ class MonsterTypeFunctions final : LuaScriptInterface {
 
 		static int luaMonsterTypeRespawnTypePeriod(lua_State* L);
 		static int luaMonsterTypeRespawnTypeIsUnderground(lua_State* L);
-		static void createMonsterTypeLootLuaTable(lua_State* L);
 };
 
 #endif  // SRC_LUA_FUNCTIONS_CREATURES_MONSTER_MONSTER_TYPE_FUNCTIONS_HPP_
