@@ -62,10 +62,6 @@ class Monster final : public Creature
 		void addList() override;
 
 		const std::string& getName() const override {
-			if (enhancedMonster != "Normal")
-			{
-				return enhancedMonster + " " + name;
-			}
 			return name;
 		}
 
@@ -244,7 +240,7 @@ class Monster final : public Creature
 		CreatureHashSet friendList;
 		CreatureList targetList;
 
-		std::string enhancedMonster;
+		std::string nameEnhanced = "Normal";
 		std::string strDescription;
 		std::string name;
 		std::string nameDescription;

@@ -46,7 +46,7 @@ Monster::Monster(MonsterType* mType) :
 	mType(mType)
 
 {
-	enhancedMonster = "Normal";
+	nameEnhanced = "Normal";
 	name = mType->name;
 	nameDescription = mType->nameDescription;
 	defaultOutfit = mType->info.outfit;
@@ -331,9 +331,9 @@ void Monster::onCreatureSay(Creature* creature, SpeakClasses type, const std::st
 
 void Monster::setEnhancedMonsters(std::string value, int32_t speed, int32_t damage, int32_t health, int32_t armour, int32_t defence, int32_t lucky)
 {
-	enhancedMonster = value;
+	nameEnhanced = value;
 
-	if (enhancedMonster != "Normal")
+	if (nameEnhanced != "Normal")
 	{
 		enhancedInfo.speedMod = speed;
 		enhancedInfo.damageMod = damage;
@@ -351,9 +351,8 @@ void Monster::setEnhancedMonsters(std::string value, int32_t speed, int32_t dama
 			health = (int32_t) health * (1 + (enhancedInfo.healthMod / 100));
 			healthMax = (int32_t) healthMax * (1 + (enhancedInfo.healthMod / 100));
 		}
-		
+		name = value + " " + name;
 	}
-	
 }
 
 void Monster::addFriend(Creature* creature)
