@@ -62,6 +62,10 @@ class Monster final : public Creature
 		void addList() override;
 
 		const std::string& getName() const override {
+			if (enhancedMonster != "Normal")
+			{
+				return enhancedMonster + " " + name;
+			}
 			return name;
 		}
 
@@ -96,6 +100,10 @@ class Monster final : public Creature
 			return mType->info.race;
 		}
 		int32_t getArmor() const override {
+			if (eMType->info.speedMod > 0)
+			{
+				return (int32_t) mType->info.armor * (1 + (eMType->info.armourMod / 100));
+			}
 			return mType->info.armor;
 		}
 		int32_t getDefense() const override {
@@ -199,6 +207,7 @@ class Monster final : public Creature
 		}
 
 		void setName(std::string value) ;
+		void setEnhancedMonsters(std::string value);
 		void setNameDescription(std::string value) ;
 
 		bool isTarget(const Creature* creature) const;
@@ -235,11 +244,14 @@ class Monster final : public Creature
 		CreatureHashSet friendList;
 		CreatureList targetList;
 
+		std::string enhancedMonster;
 		std::string strDescription;
 		std::string name;
 		std::string nameDescription;
 
 		MonsterType* mType;
+		EnhancedMonsters* eMType;
+
 		SpawnMonster* spawnMonster = nullptr;
 
 		int64_t lastMeleeAttack = 0;

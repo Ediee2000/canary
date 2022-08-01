@@ -194,9 +194,22 @@ bool SpawnMonster::spawnMonster(uint32_t spawnMonsterId, MonsterType* monsterTyp
 
 	if (random_tier == 1)
 	{
-		monster_ptr->setName("[MOD] " + monster_ptr->getName());
-		monster_ptr->setNameDescription("[MOD] " + monster_ptr->getNameDescription());
-		mod_monster = true;
+		random_tier = (int32_t)(normal_random(1,3));
+		switch (random_tier)
+		{
+			case 1:
+				monster_ptr->setEnhancedMonsters("Angry");
+				break;
+			case 2:
+				monster_ptr->setEnhancedMonsters("Brute");
+				break;
+			case 3:
+				monster_ptr->setEnhancedMonsters("Swift");
+				break;
+			default:
+				monster_ptr->setEnhancedMonsters("Normal");
+		}
+
 	}
 
 	if (startup) {
@@ -221,6 +234,22 @@ bool SpawnMonster::spawnMonster(uint32_t spawnMonsterId, MonsterType* monsterTyp
 	spawnMonsterMap[spawnMonsterId].lastSpawn = OTSYS_TIME();
 	g_events().eventMonsterOnSpawn(monster, pos);
 	return true;
+}
+
+void SpawnMonster::configEnhanceds()
+{
+	auto enhanced_normal = new EnhancedMonsters("Normal");
+	auto enhanced_angry = new EnhancedMonsters("Angry");
+	auto enhanced_brute = new EnhancedMonsters("Brute");
+	auto enhanced_swift = new EnhancedMonsters("Swift");
+	enhanced_brute->setArmour(10);
+	enhanced_angry->setSpeed(10);
+	enhanced_swift->setHealth(10);
+	g_monsters().addEnchancedMonster("Normal", enhanced_normal);
+	g_monsters().addEnchancedMonster("Angry", enhanced_angry);
+	g_monsters().addEnchancedMonster("Brute", enhanced_brute);
+	g_monsters().addEnchancedMonster("Swift", enhanced_swift);
+	
 }
 
 void SpawnMonster::startup()

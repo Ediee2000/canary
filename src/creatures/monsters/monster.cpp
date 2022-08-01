@@ -45,6 +45,8 @@ Monster::Monster(MonsterType* mType) :
 	strDescription(asLowerCaseString(mType->nameDescription)),
 	mType(mType)
 {
+	enhancedMonster = "Normal";
+	eMType = g_monsters().getEnchancedMonster("Normal");
 	name = mType->name;
 	nameDescription = mType->nameDescription;
 	defaultOutfit = mType->info.outfit;
@@ -325,6 +327,26 @@ void Monster::onCreatureSay(Creature* creature, SpeakClasses type, const std::st
 
 		scriptInterface->callVoidFunction(4);
 	}
+}
+
+void Monster::setEnhancedMonsters(std::string value)
+{
+	enhancedMonster = value;
+	eMType = g_monsters().getEnchancedMonster(value);
+	if (value != "Normal")
+	{
+		if (eMType->info.speedMod > 0)
+		{
+			baseSpeed = (int32_t) baseSpeed * (1 + (eMType->info.speedMod / 100));
+		}
+		if (eMType->info.healthMod > 0)
+		{
+			health = (int32_t) health * (1 + (eMType->info.healthMod / 100));
+			healthMax = (int32_t) healthMax * (1 + (eMType->info.healthMod / 100));
+		}
+		
+	}
+	
 }
 
 void Monster::addFriend(Creature* creature)

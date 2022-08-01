@@ -51,6 +51,7 @@ class SpawnMonster
 			return interval;
 		}
 		void startup();
+		void configEnhanceds();
 
 		void startSpawnMonsterCheck();
 		void stopEvent();
