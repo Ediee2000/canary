@@ -184,6 +184,10 @@ class Creature : virtual public Thing
 		int32_t getSpeed() const {
 			return baseSpeed + varSpeed;
 		}
+
+		void setBaseSpeed(int32_t newSpeed) {
+			baseSpeed = newSpeed;
+		}
 		void setSpeed(int32_t varSpeedDelta) {
 			int32_t oldSpeed = getSpeed();
 			varSpeed = varSpeedDelta;
@@ -209,6 +213,8 @@ class Creature : virtual public Thing
 		virtual int32_t getMaxHealth() const {
 			return healthMax;
 		}
+
+
 		uint32_t getMana() const {
 			return mana;
 		}
@@ -219,6 +225,16 @@ class Creature : virtual public Thing
     uint16_t getManaShield() const {
       return manaShield;
     }
+
+	void Creature::setMaxHealth(int32_t newMaxHealth)
+	{
+		int32_t oldHealth = healthMax;
+		healthMax = newMaxHealth;
+		if (health > healthMax)
+		{
+			health = healthMax;
+		}
+	}
 
     void setManaShield(uint16_t value) {
       manaShield = value;

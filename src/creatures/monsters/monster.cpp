@@ -344,12 +344,11 @@ void Monster::setEnhancedMonsters(std::string value, int32_t speed, int32_t dama
 
 		if (enhancedInfo.speedMod > 0)
 		{
-			baseSpeed = (int32_t) baseSpeed * (1 + (enhancedInfo.speedMod / 100));
+			setBaseSpeed((int32_t) getSpeed() * (1 + (enhancedInfo.speedMod / 100)));
 		}
 		if (enhancedInfo.healthMod > 0)
 		{
-			health = (int32_t) health * (1 + (enhancedInfo.healthMod / 100));
-			healthMax = (int32_t) healthMax * (1 + (enhancedInfo.healthMod / 100));
+			setMaxHealth((int32_t) getMaxHealth() * (1 + (enhancedInfo.healthMod / 100)));
 		}
 		name = value + " " + name;
 	}
