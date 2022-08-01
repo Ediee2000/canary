@@ -183,6 +183,7 @@ void Game::setGameState(GameState_t newState)
 			g_chat().load();
 
 			// Load monsters and npcs stored by the "loadFromXML" function
+			map.spawnsMonster.configEnhanceds();
 			map.spawnsMonster.startup();
 			map.spawnsNpc.startup();
 
