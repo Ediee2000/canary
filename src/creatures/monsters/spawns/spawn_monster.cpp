@@ -198,16 +198,17 @@ bool SpawnMonster::spawnMonster(uint32_t spawnMonsterId, MonsterType* monsterTyp
 		switch (random_tier)
 		{
 			case 1:
-				monster_ptr->setEnhancedMonsters("Angry");
+			//setEnhancedMonsters(std::string value, int32_t speed, int32_t damage, int32_t health, int32_t armour, int32_t defence, int32_t lucky)
+				monster_ptr->setEnhancedMonsters("Angry",0,10,0,0,0,0);
 				break;
 			case 2:
-				monster_ptr->setEnhancedMonsters("Brute");
+				monster_ptr->setEnhancedMonsters("Brute",0,0,10,0,0,0);
 				break;
 			case 3:
-				monster_ptr->setEnhancedMonsters("Swift");
+				monster_ptr->setEnhancedMonsters("Swift",10,0,0,0,0,0);
 				break;
 			default:
-				monster_ptr->setEnhancedMonsters("Normal");
+				monster_ptr->setEnhancedMonsters("Normal",0,0,0,0,0,0);
 		}
 
 	}
@@ -236,21 +237,6 @@ bool SpawnMonster::spawnMonster(uint32_t spawnMonsterId, MonsterType* monsterTyp
 	return true;
 }
 
-void SpawnsMonster::configEnhanceds()
-{
-	auto enhanced_normal = new EnhancedMonsters("Normal");
-	auto enhanced_angry = new EnhancedMonsters("Angry");
-	auto enhanced_brute = new EnhancedMonsters("Brute");
-	auto enhanced_swift = new EnhancedMonsters("Swift");
-	enhanced_brute->setArmour(10);
-	enhanced_angry->setSpeed(10);
-	enhanced_swift->setHealth(10);
-	g_monsters().addEnchancedMonster("Normal", enhanced_normal);
-	g_monsters().addEnchancedMonster("Angry", enhanced_angry);
-	g_monsters().addEnchancedMonster("Brute", enhanced_brute);
-	g_monsters().addEnchancedMonster("Swift", enhanced_swift);
-	
-}
 
 void SpawnMonster::startup()
 {

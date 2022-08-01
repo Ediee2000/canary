@@ -44,9 +44,9 @@ Monster::Monster(MonsterType* mType) :
 	Creature(),
 	strDescription(asLowerCaseString(mType->nameDescription)),
 	mType(mType)
+
 {
 	enhancedMonster = "Normal";
-	eMType = g_monsters().getEnchancedMonster("Normal");
 	name = mType->name;
 	nameDescription = mType->nameDescription;
 	defaultOutfit = mType->info.outfit;
@@ -329,20 +329,27 @@ void Monster::onCreatureSay(Creature* creature, SpeakClasses type, const std::st
 	}
 }
 
-void Monster::setEnhancedMonsters(std::string value)
+void Monster::setEnhancedMonsters(std::string value, int32_t speed, int32_t damage, int32_t health, int32_t armour, int32_t defence, int32_t lucky)
 {
 	enhancedMonster = value;
-	eMType = g_monsters().getEnchancedMonster(value);
-	if (value != "Normal")
+
+	if (enhancedMonster != "Normal")
 	{
-		if (eMType->info.speedMod > 0)
+		enhancedInfo.speedMod = speed;
+		enhancedInfo.damageMod = damage;
+		enhancedInfo.healthMod = health;
+		enhancedInfo.armourMod = armour;
+		enhancedInfo.defenceMod = defence;
+		enhancedInfo.luckyMod = lucky;
+
+		if (enhancedInfo.speedMod > 0)
 		{
-			baseSpeed = (int32_t) baseSpeed * (1 + (eMType->info.speedMod / 100));
+			baseSpeed = (int32_t) baseSpeed * (1 + (enhancedInfo.speedMod / 100));
 		}
-		if (eMType->info.healthMod > 0)
+		if (enhancedInfo.healthMod > 0)
 		{
-			health = (int32_t) health * (1 + (eMType->info.healthMod / 100));
-			healthMax = (int32_t) healthMax * (1 + (eMType->info.healthMod / 100));
+			health = (int32_t) health * (1 + (enhancedInfo.healthMod / 100));
+			healthMax = (int32_t) healthMax * (1 + (enhancedInfo.healthMod / 100));
 		}
 		
 	}

@@ -87,7 +87,6 @@ class SpawnsMonster
 		bool loadFromXML(const std::string& filemonstername);
 		void startup();
 		
-		void configEnhanceds();
 		void clear();
 
 		bool isStarted() const {

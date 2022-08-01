@@ -219,44 +219,6 @@ class MonsterSpell
 		CombatType_t combatType = COMBAT_UNDEFINEDDAMAGE;
 };
 
-class EnhancedMonsters
-{
-	struct MonsterInfo {
-		uint32_t speedMod = 0;
-		uint32_t healthMod = 0;
-		uint32_t armourMod = 0;
-		uint32_t damageMod = 0;
-		uint32_t defenceMod = 0;
-		uint32_t luckyMod = 0;
-		
-		std::vector<LootBlock> lootItems;
-		std::vector<spellBlock_t> attackSpells;
-		std::vector<spellBlock_t> defenseSpells;
-		std::map<CombatType_t, int32_t> elementMap;
-	};
-
-	public:
-		EnhancedMonsters() = default;
-		explicit EnhancedMonsters(const std::string &initName) : name(initName) {};
-
-		// non-copyable
-		EnhancedMonsters(const EnhancedMonsters&) = delete;
-		EnhancedMonsters& operator=(const EnhancedMonsters&) = delete;
-
-		void setSpeed(uint32_t newSpeed);
-		void setHealth(uint32_t newHealth);
-		void setArmour(uint32_t newArmour);
-		void setDamage(uint32_t newDamage);
-		void setDefence(uint32_t newDefence);
-		void setLucky(uint32_t newLucky);
-
-		std::string name;
-
-		MonsterInfo info;
-
-
-};
-
 class Monsters
 {
 	public:
@@ -279,15 +241,12 @@ class Monsters
 		bool reload();
 
 		MonsterType* getMonsterType(const std::string& name);
-		EnhancedMonsters* getEnchancedMonster(const std::string& name);
 		MonsterType* getMonsterTypeByRaceId(uint16_t thisrace);
 		void addMonsterType(const std::string& name, MonsterType* mType);
-		void addEnchancedMonster(const std::string& name, EnhancedMonsters* mType);
 		bool deserializeSpell(MonsterSpell* spell, spellBlock_t& sb, const std::string& description = "");
 
 		std::unique_ptr<LuaScriptInterface> scriptInterface;
 		std::map<std::string, MonsterType*> monsters;
-		std::map<std::string, EnhancedMonsters*> enchancedMonsters;
 
 	private:
 		ConditionDamage* getDamageCondition(ConditionType_t conditionType,

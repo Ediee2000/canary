@@ -100,9 +100,9 @@ class Monster final : public Creature
 			return mType->info.race;
 		}
 		int32_t getArmor() const override {
-			if (eMType->info.speedMod > 0)
+			if (enhancedInfo.armourMod > 0)
 			{
-				return (int32_t) mType->info.armor * (1 + (eMType->info.armourMod / 100));
+				return (int32_t) mType->info.armor * (1 + (enhancedInfo.armourMod / 100));
 			}
 			return mType->info.armor;
 		}
@@ -207,7 +207,7 @@ class Monster final : public Creature
 		}
 
 		void setName(std::string value) ;
-		void setEnhancedMonsters(std::string value);
+		void setEnhancedMonsters(std::string value, int32_t speed, int32_t damage, int32_t health, int32_t armour, int32_t defence, int32_t lucky);
 		void setNameDescription(std::string value) ;
 
 		bool isTarget(const Creature* creature) const;
@@ -250,7 +250,20 @@ class Monster final : public Creature
 		std::string nameDescription;
 
 		MonsterType* mType;
-		EnhancedMonsters* eMType;
+
+		struct EnhancedMonster {
+		uint32_t speedMod = 0;
+		uint32_t healthMod = 0;
+		uint32_t armourMod = 0;
+		uint32_t damageMod = 0;
+		uint32_t defenceMod = 0;
+		uint32_t luckyMod = 0;
+		
+		std::vector<LootBlock> lootItems;
+		std::vector<spellBlock_t> attackSpells;
+		std::vector<spellBlock_t> defenseSpells;
+		std::map<CombatType_t, int32_t> elementMap;
+		} enhancedInfo;
 
 		SpawnMonster* spawnMonster = nullptr;
 
