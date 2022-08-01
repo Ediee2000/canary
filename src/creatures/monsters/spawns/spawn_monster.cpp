@@ -122,6 +122,7 @@ void SpawnsMonster::startup()
 	if (!isLoaded() || isStarted()) {
 		return;
 	}
+	configEnhanceds();
 
 	for (SpawnMonster& spawnMonster : spawnMonsterList) {
 		spawnMonster.startup();
@@ -236,7 +237,7 @@ bool SpawnMonster::spawnMonster(uint32_t spawnMonsterId, MonsterType* monsterTyp
 	return true;
 }
 
-void SpawnMonster::configEnhanceds()
+void configEnhanceds()
 {
 	auto enhanced_normal = new EnhancedMonsters("Normal");
 	auto enhanced_angry = new EnhancedMonsters("Angry");
