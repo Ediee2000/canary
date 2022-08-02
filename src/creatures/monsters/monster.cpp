@@ -332,7 +332,7 @@ void Monster::onCreatureSay(Creature* creature, SpeakClasses type, const std::st
 void Monster::setEnhancedMonsters(std::string value, int32_t speed, int32_t damage, int32_t health, int32_t armour, int32_t defence, int32_t lucky)
 {
 	nameEnhanced = value;
-
+	int32_t newModValue = 0;
 	if (nameEnhanced != "Normal")
 	{
 		SPDLOG_INFO("[Monsters::setEnchancedMonster] - Enhanced {} to {}", nameEnhanced, name);
@@ -345,14 +345,16 @@ void Monster::setEnhancedMonsters(std::string value, int32_t speed, int32_t dama
 
 		if (enhancedInfo.speedMod > 0)
 		{
-			SPDLOG_INFO("[Monsters::setEnchancedMonster] - Enhanced speed {} to {}", getSpeed(), getSpeed() * (1 + (enhancedInfo.speedMod / 100)));
-			setBaseSpeed(getSpeed() * (1 + (enhancedInfo.speedMod / 100)));
+			newModValue = (int32_t)(getSpeed() * (1 + (enhancedInfo.speedMod / 100)));
+			SPDLOG_INFO("[Monsters::setEnchancedMonster] - Enhanced speed {} to {}", getSpeed(), newModValue);
+			setBaseSpeed(newModValue);
 			SPDLOG_INFO("[Monsters::setEnchancedMonster] - New Enhanced speed {}", getSpeed());
 		}
 		if (enhancedInfo.healthMod > 0)
 		{
-			SPDLOG_INFO("[Monsters::setEnchancedMonster] - Enhanced health {} to {}", getMaxHealth(), getMaxHealth() * (1 + (enhancedInfo.healthMod / 100)));
-			setMaxHealth( getMaxHealth() * (1 + (enhancedInfo.healthMod / 100)));
+			newModValue = (int32_t)(getMaxHealth() * (1 + (enhancedInfo.healthMod / 100)));
+			SPDLOG_INFO("[Monsters::setEnchancedMonster] - Enhanced health {} to {}", getMaxHealth(), newModValue);
+			setMaxHealth(newModValue);
 			SPDLOG_INFO("[Monsters::setEnchancedMonster] - New Enhanced health {}", getMaxHealth());
 		}
 		name = value + " " + name;
