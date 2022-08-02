@@ -185,9 +185,6 @@ class Creature : virtual public Thing
 			return baseSpeed + varSpeed;
 		}
 
-		void setBaseSpeed(int32_t newSpeed) {
-			baseSpeed = newSpeed;
-		}
 		void setSpeed(int32_t varSpeedDelta) {
 			int32_t oldSpeed = getSpeed();
 			varSpeed = varSpeedDelta;
@@ -201,7 +198,7 @@ class Creature : virtual public Thing
 		}
 
 		void setBaseSpeed(uint32_t newBaseSpeed) {
-			baseSpeed = newBaseSpeed;
+			this->baseSpeed = newBaseSpeed;
 		}
 		uint32_t getBaseSpeed() const {
 			return baseSpeed;
@@ -217,10 +214,10 @@ class Creature : virtual public Thing
 		void setMaxHealth(int32_t newMaxHealth)
 		{
 			int32_t oldHealth = healthMax;
-			healthMax = newMaxHealth;
+			this->healthMax = newMaxHealth;
 			if (health > healthMax | oldHealth == health)
 			{
-				health = healthMax;
+				this->health = healthMax;
 			}
 		}
 

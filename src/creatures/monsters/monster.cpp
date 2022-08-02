@@ -335,6 +335,7 @@ void Monster::setEnhancedMonsters(std::string value, int32_t speed, int32_t dama
 
 	if (nameEnhanced != "Normal")
 	{
+		SPDLOG_INFO("[Monsters::setEnchancedMonster] - Enhanced {} to {}", nameEnhanced, name);
 		enhancedInfo.speedMod = speed;
 		enhancedInfo.damageMod = damage;
 		enhancedInfo.healthMod = health;
@@ -344,11 +345,13 @@ void Monster::setEnhancedMonsters(std::string value, int32_t speed, int32_t dama
 
 		if (enhancedInfo.speedMod > 0)
 		{
-			setBaseSpeed((int32_t) getSpeed() * (1 + (enhancedInfo.speedMod / 100)));
+			SPDLOG_INFO("[Monsters::setEnchancedMonster] - Enhanced speed to {}", getSpeed() , getSpeed() * (1 + (enhancedInfo.speedMod / 100)));
+			setBaseSpeed(getSpeed() * (1 + (enhancedInfo.speedMod / 100)));
 		}
 		if (enhancedInfo.healthMod > 0)
 		{
-			setMaxHealth((int32_t) getMaxHealth() * (1 + (enhancedInfo.healthMod / 100)));
+			SPDLOG_INFO("[Monsters::setEnchancedMonster] - Enhanced health to {}", getMaxHealth() * (1 + (enhancedInfo.healthMod / 100)));
+			setMaxHealth( getMaxHealth() * (1 + (enhancedInfo.healthMod / 100)));
 		}
 		name = value + " " + name;
 	}
