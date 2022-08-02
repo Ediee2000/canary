@@ -248,12 +248,12 @@ class Monster final : public Creature
 		MonsterType* mType;
 
 		struct EnhancedMonster {
-		uint32_t speedMod = 0;
-		uint32_t healthMod = 0;
-		uint32_t armourMod = 0;
-		uint32_t damageMod = 0;
-		uint32_t defenceMod = 0;
-		uint32_t luckyMod = 0;
+		int32_t speedMod = 0;
+		int32_t healthMod = 0;
+		int32_t armourMod = 0;
+		int32_t damageMod = 0;
+		int32_t defenceMod = 0;
+		int32_t luckyMod = 0;
 		
 		std::vector<LootBlock> lootItems;
 		std::vector<spellBlock_t> attackSpells;

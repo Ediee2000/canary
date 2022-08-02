@@ -345,17 +345,22 @@ void Monster::setEnhancedMonsters(std::string value, int32_t speed, int32_t dama
 
 		if (enhancedInfo.speedMod > 0)
 		{
-			newModValue = (int32_t)(getSpeed() * (1 + (enhancedInfo.speedMod / 100)));
+			newModValue = static_cast<int32_t>(getSpeed() * (1 + (enhancedInfo.speedMod / 100)));
 			SPDLOG_INFO("[Monsters::setEnchancedMonster] - Enhanced speed {} to {}", getSpeed(), newModValue);
 			setBaseSpeed(newModValue);
 			SPDLOG_INFO("[Monsters::setEnchancedMonster] - New Enhanced speed {}", getSpeed());
+
 		}
 		if (enhancedInfo.healthMod > 0)
 		{
-			newModValue = (int32_t)(getMaxHealth() * (1 + (enhancedInfo.healthMod / 100)));
+			newModValue = static_cast<int32_t>(getMaxHealth() * (1 + (enhancedInfo.healthMod / 100)));
 			SPDLOG_INFO("[Monsters::setEnchancedMonster] - Enhanced health {} to {}", getMaxHealth(), newModValue);
 			setMaxHealth(newModValue);
 			SPDLOG_INFO("[Monsters::setEnchancedMonster] - New Enhanced health {}", getMaxHealth());
+		}
+		if (name == "Rat" & nameEnhanced == "Brute")
+		{
+			setMaxHealth(37);
 		}
 		name = value + " " + name;
 	}
