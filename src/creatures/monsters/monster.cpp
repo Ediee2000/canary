@@ -345,7 +345,7 @@ void Monster::setEnhancedMonsters(std::string value, int32_t speed, int32_t dama
 
 		if (enhancedInfo.speedMod > 0)
 		{
-			newModValue = static_cast<int32_t>(getSpeed() * (1 + (enhancedInfo.speedMod / 100)));
+			newModValue = static_cast<int32_t>(getSpeed() * (float)((1 + (enhancedInfo.speedMod / 100))));
 			SPDLOG_INFO("[Monsters::setEnchancedMonster] - Enhanced speed {} to {}", getSpeed(), newModValue);
 			setBaseSpeed(newModValue);
 			SPDLOG_INFO("[Monsters::setEnchancedMonster] - New Enhanced speed {}", getSpeed());
@@ -353,7 +353,7 @@ void Monster::setEnhancedMonsters(std::string value, int32_t speed, int32_t dama
 		}
 		if (enhancedInfo.healthMod > 0)
 		{
-			newModValue = static_cast<int32_t>(getMaxHealth() * (1 + (enhancedInfo.healthMod / 100)));
+			newModValue = static_cast<int32_t>(getMaxHealth() * (1 + (float)((enhancedInfo.healthMod / 100))));
 			SPDLOG_INFO("[Monsters::setEnchancedMonster] - Enhanced health {} to {}", getMaxHealth(), newModValue);
 			setMaxHealth(newModValue);
 			SPDLOG_INFO("[Monsters::setEnchancedMonster] - New Enhanced health {}", getMaxHealth());
@@ -363,9 +363,9 @@ void Monster::setEnhancedMonsters(std::string value, int32_t speed, int32_t dama
 			SPDLOG_INFO("[Monsters::setEnchancedMonster] - Test START-------------------------------------------------------");
 			SPDLOG_INFO("[Monsters::setEnchancedMonster] - Test Compute - Get Speed {}", getSpeed());
 			SPDLOG_INFO("[Monsters::setEnchancedMonster] - Test Compute - Get enhancedInfo.speedMod {}", enhancedInfo.healthMod);
-			SPDLOG_INFO("[Monsters::setEnchancedMonster] - Test Compute - tranform to float enhancedInfo.healthMod {}", enhancedInfo.healthMod / 100);
-			SPDLOG_INFO("[Monsters::setEnchancedMonster] - Test Compute - tranform to float + 1 enhancedInfo.healthMod {}", (1 + (enhancedInfo.healthMod / 100)));
-			SPDLOG_INFO("[Monsters::setEnchancedMonster] - Test Compute - apply {}", static_cast<int32_t>(getMaxHealth() * (1 + (enhancedInfo.healthMod / 100))));
+			SPDLOG_INFO("[Monsters::setEnchancedMonster] - Test Compute - tranform to float enhancedInfo.healthMod {}", (float)(enhancedInfo.healthMod / 100));
+			SPDLOG_INFO("[Monsters::setEnchancedMonster] - Test Compute - tranform to float + 1 enhancedInfo.healthMod {}", (float)(1 + (enhancedInfo.healthMod / 100)));
+			SPDLOG_INFO("[Monsters::setEnchancedMonster] - Test Compute - apply {}", static_cast<int32_t>(getMaxHealth() * (float)(1 + (enhancedInfo.healthMod / 100))));
 			SPDLOG_INFO("[Monsters::setEnchancedMonster] - Test END---------------------------------------------------------");
 			setMaxHealth(37);
 		}
