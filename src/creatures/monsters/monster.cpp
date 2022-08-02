@@ -360,6 +360,13 @@ void Monster::setEnhancedMonsters(std::string value, int32_t speed, int32_t dama
 		}
 		if (name == "Rat" & nameEnhanced == "Brute")
 		{
+			SPDLOG_INFO("[Monsters::setEnchancedMonster] - Test START-------------------------------------------------------");
+			SPDLOG_INFO("[Monsters::setEnchancedMonster] - Test Compute - Get Speed", getSpeed());
+			SPDLOG_INFO("[Monsters::setEnchancedMonster] - Test Compute - Get enhancedInfo.speedMod", enhancedInfo.healthMod);
+			SPDLOG_INFO("[Monsters::setEnchancedMonster] - Test Compute - tranform to float enhancedInfo.healthMod", enhancedInfo.healthMod / 100);
+			SPDLOG_INFO("[Monsters::setEnchancedMonster] - Test Compute - tranform to float + 1 enhancedInfo.healthMod", (1 + (enhancedInfo.healthMod / 100)));
+			SPDLOG_INFO("[Monsters::setEnchancedMonster] - Test Compute - apply ", static_cast<int32_t>(getMaxHealth() * (1 + (enhancedInfo.healthMod / 100))));
+			SPDLOG_INFO("[Monsters::setEnchancedMonster] - Test END---------------------------------------------------------");
 			setMaxHealth(37);
 		}
 		name = value + " " + name;
