@@ -214,6 +214,16 @@ class Creature : virtual public Thing
 			return healthMax;
 		}
 
+		void setMaxHealth(int32_t newMaxHealth)
+		{
+			int32_t oldHealth = healthMax;
+			healthMax = newMaxHealth;
+			if (health > healthMax | oldHealth == health)
+			{
+				health = healthMax;
+			}
+		}
+
 
 		uint32_t getMana() const {
 			return mana;
@@ -225,16 +235,6 @@ class Creature : virtual public Thing
     uint16_t getManaShield() const {
       return manaShield;
     }
-
-	void Creature::setMaxHealth(int32_t newMaxHealth)
-	{
-		int32_t oldHealth = healthMax;
-		healthMax = newMaxHealth;
-		if (health > healthMax)
-		{
-			health = healthMax;
-		}
-	}
 
     void setManaShield(uint16_t value) {
       manaShield = value;
