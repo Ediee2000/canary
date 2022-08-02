@@ -343,7 +343,6 @@ void Monster::setEnhancedMonsters(std::string value, int32_t speed, int32_t dama
 	int32_t newModValue = 0;
 	if (nameEnhanced != "Normal")
 	{
-		SPDLOG_INFO("[Monsters::setEnchancedMonster] - Enhanced {} to {}", nameEnhanced, name);
 		enhancedInfo.speedMod = speed;
 		enhancedInfo.damageMod = damage;
 		enhancedInfo.healthMod = health;
@@ -357,12 +356,12 @@ void Monster::setEnhancedMonsters(std::string value, int32_t speed, int32_t dama
 		}
 		if (enhancedInfo.healthMod > 0)
 		{
-			setBaseSpeed(increaseValue(getHealth(), enhancedInfo.healthMod));
+			setMaxHealth(increaseValue(getHealth(), enhancedInfo.healthMod));
 		}
 		if (name == "Rat" & nameEnhanced == "Brute")
 		{
 			SPDLOG_INFO("[Monsters::setEnchancedMonster] - Test START-------------------------------------------------------");
-			SPDLOG_INFO("[Monsters::setEnchancedMonster] - Test Compute - Get Speed {}", getSpeed());
+			SPDLOG_INFO("[Monsters::setEnchancedMonster] - Test Compute - Get Speed {}", getHealth());
 			SPDLOG_INFO("[Monsters::setEnchancedMonster] - Test Compute - Get enhancedInfo.speedMod {}", enhancedInfo.healthMod);
 			SPDLOG_INFO("[Monsters::setEnchancedMonster] - Test Compute - tranform to float enhancedInfo.healthMod {}", static_cast<float>(enhancedInfo.healthMod) / static_cast<float>(100));
 			SPDLOG_INFO("[Monsters::setEnchancedMonster] - Test Compute - apply {}", increaseValue(getHealth(), enhancedInfo.healthMod));
