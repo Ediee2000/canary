@@ -192,20 +192,20 @@ bool SpawnMonster::spawnMonster(uint32_t spawnMonsterId, MonsterType* monsterTyp
 	int32_t random_tier = (int32_t)(normal_random(1,100) / 10);
 	bool mod_monster = false;
 
-	if (random_tier == 1)
+	if (random_tier < 3)
 	{
 		random_tier = (int32_t)(normal_random(1,3));
 		switch (random_tier)
 		{
 			case 1:
 			//setEnhancedMonsters(std::string value, int32_t speed, int32_t damage, int32_t health, int32_t armour, int32_t defence, int32_t lucky)
-				monster_ptr->setEnhancedMonsters("Angry",0,10,0,0,0,0);
+				monster_ptr->setEnhancedMonsters("Angry",0,10,0,0,0,10);
 				break;
 			case 2:
-				monster_ptr->setEnhancedMonsters("Brute",0,0,10,0,0,0);
+				monster_ptr->setEnhancedMonsters("Brute",0,0,10,0,0,10);
 				break;
 			case 3:
-				monster_ptr->setEnhancedMonsters("Swift",10,0,0,0,0,0);
+				monster_ptr->setEnhancedMonsters("Swift",10,0,0,0,0,10);
 				break;
 			default:
 				monster_ptr->setEnhancedMonsters("Normal",0,0,0,0,0,0);
