@@ -336,7 +336,6 @@ int32_t increaseValue(int32_t value, int32_t increment)
 	return static_cast<int32_t>(value_f);
 }
 
-
 void Monster::setEnhancedMonsters(std::string value, int32_t speed, int32_t damage, int32_t health, int32_t armour, int32_t defence, int32_t lucky)
 {
 	nameEnhanced = value;
@@ -359,14 +358,6 @@ void Monster::setEnhancedMonsters(std::string value, int32_t speed, int32_t dama
 			setMaxHealth(increaseValue(getHealth(), enhancedInfo.healthMod));
 		}
 		if (name == "Rat" & nameEnhanced == "Brute")
-		{
-			SPDLOG_INFO("[Monsters::setEnchancedMonster] - Test START-------------------------------------------------------");
-			SPDLOG_INFO("[Monsters::setEnchancedMonster] - Test Compute - Get Speed {}", getHealth());
-			SPDLOG_INFO("[Monsters::setEnchancedMonster] - Test Compute - Get enhancedInfo.speedMod {}", enhancedInfo.healthMod);
-			SPDLOG_INFO("[Monsters::setEnchancedMonster] - Test Compute - tranform to float enhancedInfo.healthMod {}", static_cast<float>(enhancedInfo.healthMod) / static_cast<float>(100));
-			SPDLOG_INFO("[Monsters::setEnchancedMonster] - Test Compute - apply {}", increaseValue(getHealth(), enhancedInfo.healthMod));
-			SPDLOG_INFO("[Monsters::setEnchancedMonster] - Test END---------------------------------------------------------");
-		}
 		name = value + " " + name;
 	}
 }
@@ -1975,6 +1966,10 @@ Item* Monster::getCorpse(Creature* lastHitCreature, Creature* mostDamageCreature
 			}
 		}
 	}
+	ItemAttributes::CustomAttribute val;
+	val.set<int32_t>(enhancedInfo.luckyMod);
+	std::string key = "10001";
+	corpse->setCustomAttribute(key,val);
 	return corpse;
 }
 
@@ -2013,7 +2008,7 @@ bool Monster::getCombatValues(int32_t& min, int32_t& max)
 	if (maxCombatValue > 0) { //defense
 		multiplier = g_configManager().getFloat(RATE_MONSTER_DEFENSE);
 	} else { //attack
-		multiplier = g_configManager().getFloat(RATE_MONSTER_ATTACK);
+		multiplier = g_configManager().getFloat(RATE_MONSTER_ATTACK) + static_cast<float>(enhancedInfo.damageMod / 100);
 	}
 
 	min = minCombatValue * multiplier;

@@ -31,12 +31,14 @@ class Spawn;
 using CreatureHashSet = phmap::flat_hash_set<Creature*>;
 using CreatureList = std::list<Creature*>;
 
+
 class Monster final : public Creature
 {
 	public:
 		static Monster* createMonster(const std::string& name);
 		static int32_t despawnRange;
 		static int32_t despawnRadius;
+
 
 		explicit Monster(MonsterType* mType);
 		~Monster();
@@ -95,14 +97,22 @@ class Monster final : public Creature
 		RaceType_t getRace() const override {
 			return mType->info.race;
 		}
-		int32_t getArmor() const override {
+		int32_t Monster::getArmor() const override {
 			if (enhancedInfo.armourMod > 0)
 			{
-				return (int32_t) mType->info.armor * (1 + (enhancedInfo.armourMod / 100));
+				float increment_f = static_cast<float>(enhancedInfo.armourMod) / static_cast<float>(100) + 1.0f;
+				float value_f = increment_f * static_cast<float>(mType->info.armor);
+				return static_cast<int32_t>(value_f);
 			}
 			return mType->info.armor;
 		}
-		int32_t getDefense() const override {
+		int32_t Monster::getDefense() const override {
+			if (enhancedInfo.defenceMod > 0)
+			{
+				float increment_f = static_cast<float>(enhancedInfo.defenceMod) / static_cast<float>(100) + 1.0f;
+				float value_f = increment_f * static_cast<float>(mType->info.defense);
+				return static_cast<int32_t>(value_f);
+			}
 			return mType->info.defense;
 		}
 
