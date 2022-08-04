@@ -1966,10 +1966,10 @@ Item* Monster::getCorpse(Creature* lastHitCreature, Creature* mostDamageCreature
 			}
 		}
 	}
-	ItemAttributes::CustomAttribute val;
-	val.set<int32_t>(enhancedInfo.luckyMod);
+	// ItemAttributes::CustomAttribute val;
+	// val.set<int32_t>(enhancedInfo.luckyMod);
 	std::string key = "10001";
-	corpse->setCustomAttribute(key,val);
+	corpse->setCustomAttribute(key,enhancedInfo.luckyMod);
 	return corpse;
 }
 
