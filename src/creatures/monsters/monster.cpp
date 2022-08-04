@@ -357,7 +357,6 @@ void Monster::setEnhancedMonsters(std::string value, int32_t speed, int32_t dama
 		{
 			setMaxHealth(increaseValue(getHealth(), enhancedInfo.healthMod));
 		}
-		if (name == "Rat" & nameEnhanced == "Brute")
 		name = value + " " + name;
 	}
 }
