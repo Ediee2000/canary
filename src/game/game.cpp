@@ -6188,23 +6188,28 @@ bool Game::combatChangeHealth(Creature* attacker, Creature* target, CombatDamage
 
 		increasePhyDmg += increaseAllDmg;
 		increaseMagicDmg += increaseAllDmg;
-		
+
+		SPDLOG_WARN("Multiply Damage {}", multiplyDmg);
+		SPDLOG_WARN("Increase Phtsical Damage {}", increasePhyDmg);
+		SPDLOG_WARN("Increase Magical Damage {}", increaseMagicDmg);
+
+
 		if (damage.primary.type == COMBAT_PHYSICALDAMAGE & increasePhyDmg > 0)
 		{
-			damage.primary.value = std::round(damage.primary.value * (1.0f + (increasePhyDmg / 100.0f)));
+			damage.primary.value = std::round<int32_t>(damage.primary.value * (1.0f + (increasePhyDmg / 100.0f)));
 		}
 		if (damage.secondary.type == COMBAT_PHYSICALDAMAGE & increasePhyDmg > 0)
 		{
-			damage.secondary.value = std::round(damage.secondary.value * (1.0f + (increasePhyDmg / 100.0f)));
+			damage.secondary.value = std::round<int32_t>(damage.secondary.value * (1.0f + (increasePhyDmg / 100.0f)));
 		}
 
 		if (damage.primary.type != COMBAT_PHYSICALDAMAGE & damage.primary.type != COMBAT_HEALING  & increaseMagicDmg > 0)
 		{
-			damage.primary.value = std::round(damage.primary.value * (1.0f + (increaseMagicDmg / 100.0f)));
+			damage.primary.value = std::round<int32_t>(damage.primary.value * (1.0f + (increaseMagicDmg / 100.0f)));
 		}
 		if (damage.secondary.type != COMBAT_PHYSICALDAMAGE & damage.secondary.type != COMBAT_HEALING & increaseMagicDmg > 0)
 		{
-			damage.secondary.value = std::round(damage.secondary.value * (1.0f + (increaseMagicDmg / 100.0f)));
+			damage.secondary.value = std::round<int32_t>(damage.secondary.value * (1.0f + (increaseMagicDmg / 100.0f)));
 		}
 
 		if (multiplyDmg > 1 & normal_random(0, 100) < 6)
@@ -6260,6 +6265,8 @@ bool Game::combatChangeHealth(Creature* attacker, Creature* target, CombatDamage
 				lifeSkill += mod_lifeskill;
 			}
 
+			SPDLOG_WARN("Life Leech final chance {}, perc {}", lifeChance, lifeSkill);
+
 			if (normal_random(0, 100) < lifeChance) {
 				// Vampiric charm rune
 				if (targetMonster) {
@@ -6294,6 +6301,7 @@ bool Game::combatChangeHealth(Creature* attacker, Creature* target, CombatDamage
 				manaSkill += mod_manaskill;
 			}
 
+			SPDLOG_WARN("Mana Leech final chance {}, perc {}", manaChance, manaSkill);
 
 			if (normal_random(0, 100) < manaChance) {
 				// Void charm rune
