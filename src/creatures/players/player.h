@@ -2390,22 +2390,22 @@ class Player final : public Creature, public Cylinder
 
 		bool isPromoted() const;
 
-		uint32_t getAttackSpeed() const;
+		uint32_t getAttackSpeed();
 
-		void setProjectileCount(int32_t number) const
+		void setProjectileCount(int32_t number)
 		{
 			projectileCount = number;
 		}
-		uint32_t getProjectileCount() const
+		uint32_t getProjectileCount() 
 		{
 			return projectileCount;
 		}
 
-		void setProjectileNumber(int32_t number) const
+		void setProjectileNumber(int32_t number) 
 		{
 			projectileNumber = number;
 		} 
-		uint32_t getProjectileNumber() const
+		uint32_t getProjectileNumber() 
 		{
 			return projectileNumber;
 		}

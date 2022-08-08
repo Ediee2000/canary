@@ -285,10 +285,8 @@ WeaponType_t Player::getWeaponType() const
 	return item->getWeaponType();
 }
 
-uint32_t Player::getAttackSpeed() const
- {
-
-
+uint32_t Player::getAttackSpeed() 
+{
 	int32_t projectiles = 1;
 	getStorageValue(8549, projectiles);
 
@@ -463,8 +461,10 @@ float Player::getAttackFactor() const
 float Player::getDefenseFactor() const
 {
 	switch (fightMode) {
-		case FIGHTMODE_ATTACK: return (OTSYS_TIME() - lastAttack) < getAttackSpeed() ? 0.5f : 1.0f;
-		case FIGHTMODE_BALANCED: return (OTSYS_TIME() - lastAttack) < getAttackSpeed() ? 0.75f : 1.0f;
+		// case FIGHTMODE_ATTACK: return (OTSYS_TIME() - lastAttack) < getAttackSpeed() ? 0.5f : 1.0f;
+		// case FIGHTMODE_BALANCED: return (OTSYS_TIME() - lastAttack) < getAttackSpeed() ? 0.75f : 1.0f;
+		case FIGHTMODE_ATTACK: return 0.5f;
+		case FIGHTMODE_BALANCED: return 0.75f;
 		case FIGHTMODE_DEFENSE: return 1.0f;
 		default: return 1.0f;
 	}
