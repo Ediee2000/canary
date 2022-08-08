@@ -746,7 +746,7 @@ class Player final : public Creature, public Cylinder
 			return lastAttack > 0 && ((OTSYS_TIME() - lastAttack) >= getAttackSpeed());
 		}
 
-		uint16_t getSkillLevel(uint8_t skill) const {
+		uint16_t SkillgetSkillLevel(uint8_t skill) const {
 			uint16_t skillLevel = std::max<uint16_t>(0, skills[skill].level + varSkills[skill]);
 
 			auto it = maxValuePerSkill.find(skill);
@@ -2258,6 +2258,8 @@ class Player final : public Creature, public Cylinder
 		Vocation* vocation = nullptr;
 		RewardChest* rewardChest = nullptr;
 
+
+
 		uint32_t inventoryWeight = 0;
 		uint32_t capacity = 40000;
 		uint32_t bonusCapacity = 0;
@@ -2333,6 +2335,11 @@ class Player final : public Creature, public Cylinder
 		uint32_t charmPoints = 0;
 		int32_t UsedRunesBit = 0;
 		int32_t UnlockedRunesBit = 0;
+
+		// Projectiles
+		uint32_t projectileCount = 1;
+		uint32_t projectileNumber = 1;
+
 		std::pair<ConditionType_t, uint64_t> cleanseCondition = {CONDITION_NONE, 0};
 
 		uint8_t soul = 0;
@@ -2384,6 +2391,26 @@ class Player final : public Creature, public Cylinder
 		bool isPromoted() const;
 
 		uint32_t getAttackSpeed() const;
+
+		void setProjectileCount(int32_t number) const
+		{
+			projectileCount = number;
+		}
+		uint32_t getProjectileCount() const
+		{
+			return projectileCount;
+		}
+
+		void setProjectileNumber(int32_t number) const
+		{
+			projectileNumber = number;
+		} 
+		uint32_t getProjectileNumber() const
+		{
+			return projectileNumber;
+		}
+
+
 		
 		static double_t getPercentLevel(uint64_t count, uint64_t nextLevelCount);
 		double getLostPercent() const;

@@ -288,27 +288,29 @@ WeaponType_t Player::getWeaponType() const
 uint32_t Player::getAttackSpeed() const
  {
 
-	int32_t projectileCount = 0;
-	int32_t projectiles = 0;
 
-	getStorageValue(8549, projectileCount);
-	getStorageValue(8550, projectiles);
+	int32_t projectiles = 1;
+	getStorageValue(8549, projectiles);
 
-	if (projectileCount == -1)
+	if (projectiles < 1)
 	{
-		projectileCount = 1;
+		projectiles = 1;
 	}
 
-	if (projectileCount < projectiles)
+	if (projectiles != getProjectileNumber())
 	{
-		projectileCount += 1;
-		addStorageValue(8549, projectileCount);
-		return 50
+		setProjectileNumber(projectiles);
+	}
+
+
+	if (getProjectileCount() < projectiles)
+	{
+		setProjectileCount( getProjectileCount() + 1);
+		return 50;
 	}
 	else
 	{
-		projectileCount = 1;
-		addStorageValue(8549, projectileCount);
+		setProjectileCount(1);
 	}
 	
 
