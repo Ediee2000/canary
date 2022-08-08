@@ -6169,6 +6169,45 @@ bool Game::combatChangeHealth(Creature* attacker, Creature* target, CombatDamage
 			}
 		}
 
+		//MODS Physical
+
+		int32_t multiplyDmg = 0;
+		int32_t increaseAllDmg = 0;
+		int32_t increasePhyDmg = 0;
+		int32_t increaseMagicDmg = 0;
+
+		attacker->getPlayer()->getStorageValue(8512, multiplyDmg);
+		attacker->getPlayer()->getStorageValue(8520, increaseAllDmg);
+		attacker->getPlayer()->getStorageValue(8521, increasePhyDmg);
+		attacker->getPlayer()->getStorageValue(8522, increaseMagicDmg);
+
+		increasePhyDmg += increaseAllDmg;
+		increaseMagicDmg += increaseAllDmg;
+		
+		if (damage.primary.type == COMBAT_PHYSICALDAMAGE)
+		{
+			damage.primary.value = std::round(damage.primary.value * (1.0f + (increasePhyDmg / 100.0f)));
+		}
+		if (damage.secondary.type == COMBAT_PHYSICALDAMAGE)
+		{
+			damage.secondary.value = std::round(damage.secondary.value * (1.0f + (increasePhyDmg / 100.0f)));
+		}
+
+		if (damage.primary.type != COMBAT_PHYSICALDAMAGE & damage.primary.type != COMBAT_HEALING )
+		{
+			damage.primary.value = std::round(damage.primary.value * (1.0f + (increaseMagicDmg / 100.0f)));
+		}
+		if (damage.secondary.type != COMBAT_PHYSICALDAMAGE & damage.secondary.type != COMBAT_HEALING)
+		{
+			damage.secondary.value = std::round(damage.secondary.value * (1.0f + (increaseMagicDmg / 100.0f)));
+		}
+
+		if (multiplyDmg > 1 & normal_random(0, 100) < 6)
+		{
+			damage.primary.value = damage.primary.value  * multiplyDmg;
+			damage.secondary.value = damage.secondary.value  * multiplyDmg;
+		}
+
 		int32_t targetHealth = target->getHealth();
 		if (damage.primary.value >= targetHealth) {
 			damage.primary.value = targetHealth;
@@ -6176,6 +6215,7 @@ bool Game::combatChangeHealth(Creature* attacker, Creature* target, CombatDamage
 		} else if (damage.secondary.value) {
 			damage.secondary.value = std::min<int32_t>(damage.secondary.value, targetHealth - damage.primary.value);
 		}
+
 
 		realDamage = damage.primary.value + damage.secondary.value;
 		if (realDamage == 0) {
@@ -6205,6 +6245,16 @@ bool Game::combatChangeHealth(Creature* attacker, Creature* target, CombatDamage
 			//life leech
 			uint16_t lifeChance = attackerPlayer->getSkillLevel(SKILL_LIFE_LEECH_CHANCE);
 			uint16_t lifeSkill = attackerPlayer->getSkillLevel(SKILL_LIFE_LEECH_AMOUNT);
+
+			int32_t mod_lifeskill = 0;
+			attackerPlayer->getStorageValue(8530, mod_lifeskill);
+
+			if (mod_lifeskill > 0)
+			{
+				lifeChance = std::max<uint16_t>(100, lifeChance);
+				lifeSkill += mod_lifeskill;
+			}
+
 			if (normal_random(0, 100) < lifeChance) {
 				// Vampiric charm rune
 				if (targetMonster) {
@@ -6229,6 +6279,17 @@ bool Game::combatChangeHealth(Creature* attacker, Creature* target, CombatDamage
 			//mana leech
 			uint16_t manaChance = attackerPlayer->getSkillLevel(SKILL_MANA_LEECH_CHANCE);
       		uint16_t manaSkill = attackerPlayer->getSkillLevel(SKILL_MANA_LEECH_AMOUNT);
+
+			int32_t mod_manaskill = 0;
+			attackerPlayer->getStorageValue(8531, mod_manaskill);
+
+			if (mod_lifeskill > 0)
+			{
+				manaChance = std::max<uint16_t>(100, manaChance);
+				manaSkill += mod_manaskill;
+			}
+
+
 			if (normal_random(0, 100) < manaChance) {
 				// Void charm rune
 				if (targetMonster) {
