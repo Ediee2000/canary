@@ -746,7 +746,7 @@ class Player final : public Creature, public Cylinder
 			return lastAttack > 0 && ((OTSYS_TIME() - lastAttack) >= getAttackSpeed());
 		}
 
-		uint16_t SkillgetSkillLevel(uint8_t skill) const {
+		uint16_t getSkillLevel(uint8_t skill) const {
 			uint16_t skillLevel = std::max<uint16_t>(0, skills[skill].level + varSkills[skill]);
 
 			auto it = maxValuePerSkill.find(skill);
