@@ -6181,23 +6181,28 @@ bool Game::combatChangeHealth(Creature* attacker, Creature* target, CombatDamage
 		attacker->getPlayer()->getStorageValue(8521, increasePhyDmg);
 		attacker->getPlayer()->getStorageValue(8522, increaseMagicDmg);
 
+		multiplyDmg = std::max<int32_t>(1,multiplyDmg);
+		increaseAllDmg = std::max<int32_t>(0,increaseAllDmg);
+		increasePhyDmg = std::max<int32_t>(0,increasePhyDmg);
+		increaseMagicDmg = std::max<int32_t>(0,increaseMagicDmg);
+
 		increasePhyDmg += increaseAllDmg;
 		increaseMagicDmg += increaseAllDmg;
 		
-		if (damage.primary.type == COMBAT_PHYSICALDAMAGE)
+		if (damage.primary.type == COMBAT_PHYSICALDAMAGE & increasePhyDmg > 0)
 		{
 			damage.primary.value = std::round(damage.primary.value * (1.0f + (increasePhyDmg / 100.0f)));
 		}
-		if (damage.secondary.type == COMBAT_PHYSICALDAMAGE)
+		if (damage.secondary.type == COMBAT_PHYSICALDAMAGE & increasePhyDmg > 0)
 		{
 			damage.secondary.value = std::round(damage.secondary.value * (1.0f + (increasePhyDmg / 100.0f)));
 		}
 
-		if (damage.primary.type != COMBAT_PHYSICALDAMAGE & damage.primary.type != COMBAT_HEALING )
+		if (damage.primary.type != COMBAT_PHYSICALDAMAGE & damage.primary.type != COMBAT_HEALING  & increaseMagicDmg > 0)
 		{
 			damage.primary.value = std::round(damage.primary.value * (1.0f + (increaseMagicDmg / 100.0f)));
 		}
-		if (damage.secondary.type != COMBAT_PHYSICALDAMAGE & damage.secondary.type != COMBAT_HEALING)
+		if (damage.secondary.type != COMBAT_PHYSICALDAMAGE & damage.secondary.type != COMBAT_HEALING & increaseMagicDmg > 0)
 		{
 			damage.secondary.value = std::round(damage.secondary.value * (1.0f + (increaseMagicDmg / 100.0f)));
 		}
