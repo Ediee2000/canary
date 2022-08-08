@@ -287,6 +287,31 @@ WeaponType_t Player::getWeaponType() const
 
 uint32_t Player::getAttackSpeed() const
  {
+
+	int32_t projectileCount = 0;
+	int32_t projectiles = 0;
+
+	getStorageValue(8549, projectileCount);
+	getStorageValue(8550, projectiles);
+
+	if (projectileCount == -1)
+	{
+		projectileCount = 1;
+	}
+
+	if (projectileCount < projectiles)
+	{
+		projectileCount += 1;
+		addStorageValue(8549, projectileCount);
+		return 50
+	}
+	else
+	{
+		projectileCount = 1;
+		addStorageValue(8549, projectileCount);
+	}
+	
+
 	int32_t base_attackspeed = vocation->getAttackSpeed();
 	int32_t attackspeed_mod = 0;
 	getStorageValue(8500, attackspeed_mod);

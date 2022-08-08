@@ -6298,12 +6298,15 @@ bool Game::combatChangeHealth(Creature* attacker, Creature* target, CombatDamage
 
 			int32_t mod_manaskill = 0;
 			attackerPlayer->getStorageValue(8531, mod_manaskill);
+			mod_manaskill = std::max(0,mod_manaskill);
 
-			if (mod_lifeskill > 0)
+			if (mod_manaskill > 0)
 			{
 				manaChance = std::max<uint16_t>(100, manaChance);
-				manaSkill += mod_manaskill;
+				manaSkill += mod_manaskill ;
 			}
+
+			SPDLOG_WARN("Mana Leech chance {} plus {}", manaChance, mod_manaskill);
 
 			SPDLOG_WARN("Mana Leech final chance {}, perc {}", manaChance, manaSkill);
 
